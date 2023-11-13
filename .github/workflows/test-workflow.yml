@@ -1,0 +1,33 @@
+name: Manual trigger example
+
+on: 
+  workflow_dispatch:
+    inputs:
+      run_job2:
+        description: 'Run job 2'
+        required: true
+        default: 'true'
+
+jobs:
+  job1:
+    name: Job 1
+    runs-on: ubuntu-latest
+    environment: 
+      name: env1
+      url: https://example.com/env1
+    steps:
+      - name: Do something
+        run: echo "Hello from job 1"
+
+  job2:
+    name: Job 2
+    runs-on: ubuntu-latest
+    environment: 
+      name: env2
+      url: https://example.com/env2
+    needs: job1
+    steps:
+      - name: Do something else
+        run: echo "Hello from job 2"
+    # Add this line to make the job manual
+    if: github.event.inputs.run_job2 == 'true'
