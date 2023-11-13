@@ -22,5 +22,3 @@ jobs:
     steps:
       - name: Do something else
         run: echo "Hello from job 2"
-    # Add this line to make the job manual
-    if: false
