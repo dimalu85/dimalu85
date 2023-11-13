@@ -1,12 +1,6 @@
 name: Manual trigger example
 
-on: 
-  workflow_dispatch:
-    inputs:
-      run_job2:
-        description: 'Run job 2'
-        required: true
-        default: 'true'
+on: [workflow_dispatch]
 
 jobs:
   job1:
@@ -30,4 +24,4 @@ jobs:
       - name: Do something else
         run: echo "Hello from job 2"
     # Add this line to make the job manual
-    if: github.event.inputs.run_job2 == 'true'
+    if: false
