@@ -19,6 +19,8 @@ jobs:
     environment: 
       name: env2
       url: https://example.com/env2
+    needs: job1
     steps:
       - name: Do something else
         run: echo "Hello from job 2"
+    if: startsWith(github.ref, 'refs/tags/')
