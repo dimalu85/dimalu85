@@ -12,6 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/print-env
+        with:
+          TEST_S: "${{ secrets.TEST_S }}"
+          TEST_V: "${{ secrets.TEST_V }}"
 
   job2:
     name: Job 2
@@ -23,3 +26,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/print-env
+        with:
+            TEST_S: "${{ secrets.TEST_S }}"
+            TEST_V: "${{ secrets.TEST_V }}"

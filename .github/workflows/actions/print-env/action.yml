@@ -1,7 +1,12 @@
 name: Print Env
 description: Prints env secret and var
+inputs:
+  TEST_S:
+    required: true
+  TEST_V:
+    required: true
 runs:
   using: 'composite'
   steps:
     - name: print
-      run: echo "secret: ${{ secrets.TEST_S }}, var: ${{ vars.TEST_V }}"
+      run: echo "${{ inputs.TEST_S }}: ${{ env[inputs.TEST_S] }}, ${{ inputs.TEST_V }}: ${{ env[inputs.TEST_V] }}"
