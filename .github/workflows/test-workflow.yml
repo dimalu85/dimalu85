@@ -10,6 +10,7 @@ jobs:
       name: env1
       url: https://example.com/env1
     steps:
+      - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/print-env.yml
 
   job2:
@@ -20,4 +21,5 @@ jobs:
       url: https://example.com/env2
     needs: job1
     steps:
+      - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/print-env.yml

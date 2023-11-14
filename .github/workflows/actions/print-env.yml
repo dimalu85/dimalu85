@@ -3,10 +3,5 @@ description: Prints env secret and var
 runs:
   using: 'composite'
   steps:
-    - name: CHECKOUT
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-        
     - name: print
       run: echo "secret: ${{ secrets.TEST_S }}, var: ${{ vars.TEST_V }}"
