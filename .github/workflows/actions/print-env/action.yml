@@ -9,5 +9,5 @@ runs:
   using: 'composite'
   steps:
     - name: print
-      run: echo "${{ inputs.TEST_S }} - ${{ env[inputs.TEST_S] }}, ${{ inputs.TEST_V }} - ${{ env[inputs.TEST_V] }}"
+      run: echo "secret - ${{ inputs.TEST_S }}, var - ${{ inputs.TEST_V }}"
       shell: bash
