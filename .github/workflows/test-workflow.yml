@@ -10,8 +10,7 @@ jobs:
       name: env1
       url: https://example.com/env1
     steps:
-      - name: Do something
-        run: echo "Hello from job 1"
+      - uses: ./.github/actions/print-env.yml
 
   job2:
     name: Job 2
@@ -21,6 +20,5 @@ jobs:
       url: https://example.com/env2
     needs: job1
     steps:
-      - name: Do something else
-        run: echo "Hello from job 2"
+      - uses: ./.github/actions/print-env.yml
     if: startsWith(github.ref, 'refs/tags/')

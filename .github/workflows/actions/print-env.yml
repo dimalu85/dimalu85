@@ -1,0 +1,7 @@
+name: Print Env
+description: Prints env secret and var
+runs:
+  using: 'composite'
+  steps:
+    - name: print
+      run: echo "secret: ${{ secrets.TEST_S }}, var: ${{ vars.TEST_V }}"
