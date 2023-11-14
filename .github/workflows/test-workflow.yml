@@ -13,8 +13,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/print-env
         with:
-          TEST_S: "${{ secrets.TEST_S }}"
-          TEST_V: "${{ secrets.TEST_V }}"
+          TEST_S: ${{ secrets.TEST_S }}
+          TEST_V: ${{ vars.TEST_V }}
 
   job2:
     name: Job 2
@@ -27,5 +27,5 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/print-env
         with:
-            TEST_S: "${{ secrets.TEST_S }}"
-            TEST_V: "${{ secrets.TEST_V }}"
+            TEST_S: ${{ secrets.TEST_S }}
+            TEST_V: ${{ vars.TEST_V }}
