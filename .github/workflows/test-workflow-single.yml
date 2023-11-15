@@ -19,6 +19,6 @@ jobs:
     environment: ${{ github.event.inputs.environment == '' && 'env1' || github.event.inputs.environment }}
     steps:
       - name: print
-      run: echo "secret - ${{ secrets.TEST_S }}, var - ${{ vars.TEST_V }}"
-      shell: bash
+        run: echo "secret - ${{ secrets.TEST_S }}, var - ${{ vars.TEST_V }}"
+        shell: bash
 
