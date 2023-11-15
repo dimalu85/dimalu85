@@ -4,13 +4,10 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        type: choice
+        type: environment
         description: 'Environment to deploy'
         required: true
         default: 'env1'
-        options:
-        - env1
-        - env2
 
 jobs:
   job1:
