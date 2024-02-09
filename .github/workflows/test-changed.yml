@@ -18,7 +18,9 @@ jobs:
       - run: |
           readarray -t added_modified_files <<<"$(jq -r '.[]' <<<'${{ steps.files.outputs.added_modified }}')"
           for changed_file in "${added_modified_files[@]}"; do
-            if [[ "${changed_file}" == my_specific_folder/* ]]; then
+            if [[ "${changed_file}" == files/* ]]; then
               echo "File changed in my_specific_folder: ${changed_file}"
+            else
+              echo "File changed another: ${changed_file}"
             fi
           done
