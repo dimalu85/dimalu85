@@ -21,6 +21,7 @@ jobs:
           changed_files=$(git diff --name-only HEAD~1 HEAD)
           for changed_file in "${changed_files[@]}"
           do
+            echo "${changed_file}"
             if [[ "${changed_file}" == files/* ]]; then
               filename=$(basename "${changed_file}")
               file_without_ext="${filename%.*}"
