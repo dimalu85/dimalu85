@@ -15,12 +15,18 @@ jobs:
 
       - name: List all changed files
         run: |
-          IFS=$'\n' files=($(git diff-tree --no-commit-id --name-only -r $(git rev-parse HEAD))) 
-          for changed_file in "${files[@]}"; do
-            echo "File - $changed_file"
-            if [[ "${changed_file}" == files/* ]]; then
-              filename=$(basename "${changed_file}")
-              file_without_ext="${filename%.*}"
-              echo "File - ${filename} - changed in my_specific_folder: ${file_without_ext}"
-            fi
+          IFS=$'\n' files=($(git diff-tree --no-commit-id --name-only -r $(git rev-parse HEAD)))
+          for file in "${files[@]}"
+          do
+            echo "$file"
+            # replace echo with your command
           done
+          # IFS=$'\n' files=($(git diff-tree --no-commit-id --name-only -r $(git rev-parse HEAD))) 
+          # for changed_file in "${files[@]}"; do
+          #   echo "File - $changed_file"
+          #   if [[ "${changed_file}" == files/* ]]; then
+          #     filename=$(basename "${changed_file}")
+          #     file_without_ext="${filename%.*}"
+          #     echo "File - ${filename} - changed in my_specific_folder: ${file_without_ext}"
+          #   fi
+          # done
