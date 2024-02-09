@@ -2,6 +2,8 @@ name: Filter changes in my_specific_folder
 
 on:
   push:
+    branches:
+      - "main"
     paths:
       - 'files/**'
 
