@@ -11,13 +11,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - id: files
-        uses: jitterbit/get-changed-files@v1
-        with:
-          format: 'json'
-      - run: |
-          readarray -t added_modified_files <<<"$(jq -r '.[]' <<<'${{ steps.files.outputs.added_modified }}')"
-          for changed_file in "${added_modified_files[@]}"; do
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v42
+
+      - name: List all changed files
+        env:
+          ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+        run: |
+          for changed_file in ${ALL_CHANGED_FILES}; do
             if [[ "${changed_file}" == files/* ]]; then
               filename=$(basename "${changed_file}")
               file_without_ext="${filename%.*}"
