@@ -19,7 +19,7 @@ jobs:
       - name: List all changed files
         run: |
           changed_files=$(git diff --name-only HEAD~1 HEAD)
-          for file in "${changed_files[@]}"
+          for changed_file in "${changed_files[@]}"
           do
             if [[ "${changed_file}" == files/* ]]; then
               filename=$(basename "${changed_file}")
