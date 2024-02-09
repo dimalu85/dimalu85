@@ -14,9 +14,11 @@ jobs:
       - id: files
         uses: jitterbit/get-changed-files@v1
         with:
-          format: 'csv'
+          format: 'txt'
       - run: |
           mapfile -d ',' -t added_modified_files < <(printf '%s,' '${{ steps.files.outputs.added_modified }}')
-          for added_modified_file in "${added_modified_files[@]}"; do
-            echo "Do something with this ${added_modified_file}."
+          for changed_file in "${added_modified_files[@]}"; do
+            if [[ "${changed_file}" == my_specific_folder/* ]]; then
+              echo "File changed in my_specific_folder: ${changed_file}"
+            fi
           done
