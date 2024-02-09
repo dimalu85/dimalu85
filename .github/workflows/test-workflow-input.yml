@@ -1,4 +1,4 @@
-name: Manual trigger example with env param
+name: Manual trigger example with file name param
 
 on:
   workflow_dispatch:
