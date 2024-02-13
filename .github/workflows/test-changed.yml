@@ -11,7 +11,7 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-            - name: CHECKOUT
+      - name: CHECKOUT
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
