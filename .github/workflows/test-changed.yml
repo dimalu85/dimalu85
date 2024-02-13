@@ -20,23 +20,6 @@ jobs:
 #       https://github.com/actions/checkout/issues/1169
         run: git config --global --add safe.directory "$PWD"
 
-      - name: Azure login
-        uses: Azure/login@v1
-        with:
-          creds: '{"clientId":"${{ secrets.B2B_CONNECT_APP_SVC_PRINCIPAL_DATA_INTEGRATION_CLIENT_ID }}","clientSecret":"${{ secrets.B2B_CONNECT_APP_SVC_PRINCIPAL_DATA_INTEGRATION_CLIENT_SECRET }}","subscriptionId":"${{ secrets.B2B_CONNECT_AZURE_SUBSCRIPTION_ID }}","tenantId":"${{ secrets.B2B_CONNECT_AZURE_TENANT_ID }}"}'
-
-      - name: "Upload to Azure Blob Storage"
-        run: |
-          changed_files=$(git diff --name-only HEAD~1 HEAD)
-          for changed_file in $changed_files
-          do
-            if [[ $changed_file == files/* ]]; then
-              filename=$(basename $changed_file)
-              echo "Uploading to blob storgae: ${filename}"
-              az storage blob upload-batch --account-name ${{ vars[format('{0}_AZURE_GRID_CONFIGS_ACCOUNT_NAME', matrix.regions )] }} -d '${{ vars.AZURE_GRID_CONFIGS_CONTAINER_NAME }}' -s './grid-configs' --pattern '**/${filename}' --overwrite
-            fi
-          done
-
       - name: List all changed files
         run: |
           changed_files=$(git diff --name-only HEAD~1 HEAD)
@@ -46,5 +29,17 @@ jobs:
             if [[ $changed_file == files/* ]]; then
               filename=$(basename $changed_file)
               echo "File changed in my_specific_folder: ${filename}"
+            fi
+          done
+      
+      - name: "Upload to Azure Blob Storage"
+        run: |
+          changed_files=$(git diff --name-only HEAD~1 HEAD)
+          for changed_file in $changed_files
+          do
+            if [[ $changed_file == files/* ]]; then
+              filename=$(basename $changed_file)
+              echo "Uploading to blob storgae: ${filename}"
+              az storage blob upload-batch --account-name ${{ vars[format('{0}_AZURE_GRID_CONFIGS_ACCOUNT_NAME', matrix.regions )] }} -d '${{ vars.AZURE_GRID_CONFIGS_CONTAINER_NAME }}' -s './grid-configs' --pattern '**/${filename}' --overwrite
             fi
           done
