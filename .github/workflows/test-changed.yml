@@ -40,6 +40,6 @@ jobs:
             if [[ $changed_file == files/* ]]; then
               filename=$(basename $changed_file)
               echo "Uploading to blob storgae: ${filename}"
-              az storage blob upload-batch --account-name ${{ vars[format('{0}_AZURE_GRID_CONFIGS_ACCOUNT_NAME', matrix.regions )] }} -d '${{ vars.AZURE_GRID_CONFIGS_CONTAINER_NAME }}' -s './grid-configs' --pattern '**/${filename}' --overwrite
+              echo "az storage blob upload-batch --account-name ${{ vars[format('{0}_AZURE_GRID_CONFIGS_ACCOUNT_NAME', matrix.regions )] }} -d '${{ vars.AZURE_GRID_CONFIGS_CONTAINER_NAME }}' -s './grid-configs' --pattern '**/${filename}' --overwrite"
             fi
           done
